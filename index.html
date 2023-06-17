@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automata</title>
+    <link rel="stylesheet" href="styles/letter1.css">
+    <script type="text/javascript" src="js/DFA.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <div class="dropdown">
+            <a href="letter1.html">Home</a>
+            <a href="about.html" id="float-right">About</a>
+            <a href="help.html" id="float-right">Help</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>DFA Simulator</h1>
+        <div class="block">
+          <h3>Select RegEx:</h3>
+          <select name="regex" id="regex" onchange="selectRegex()" >
+          <option style="display: none">--Choose--</option>
+          <option value="letter1">(aba+bab)(a+b)*(bab)(a+b)*(a+b+ab+ba)(a+b+aa)*</option>
+          <option value="number1">((101+111+101)+(1+0+11))(1+0+01)*(111+000+101)(1+0)*</option>
+        </select>
+        </div>
+        <div class="block">
+          <h3>Input a string:</h3>
+          <div id="validationResult"></div>
+        </div>
+        
+        <input class="input" type="text" id="inputString" placeholder="e.g. abababa">
+
+        <div class="block">
+          <button class="btn" id="button-validate">Validate</button>
+          <button class="btn" id="button-simulate">Simulate</button>
+          <button class="btn" id="clear" onclick="clearInput()">Reset</button>
+          
+          <div id="simulationResult"></div>
+        </div>
+    </div>
+      
+    <div id="states" class="container2" hidden="hidden">
+        <div id="letter q0" class="circle initial-state">-</div> <!--Start State-->
+        <div id="letter q1" class="circle state1"></div> <!--Start State-->
+        <div id="letter q2" class="circle state2"></div> <!--Start State-->
+        <div id="letter q3" class="circle state3"></div> <!--Start State-->
+        <div id="letter q4" class="circle state4"></div> <!--Start State-->
+        <div id="letter q5" class="circle state5"></div> <!--Start State-->
+        <div id="letter q6" class="circle state6"></div> <!--Start State-->
+        <div id="letter q7" class="circle state7"></div> <!--Start State-->
+        <div id="letter q8" class="circle state8"></div> <!--Start State-->
+        <div id="letter qt" class="circle trap-state">T</div> <!--Trap State-->
+        <div id="letter q9" class="circle final-state">+</div> <!--Final State-->
+        <div class="line"></div> <!--Final State-->
+        <div class="arrow-right"></div> <!--Final State-->
+        <div class="line line1"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal1"></div> <!--Final State-->
+        <div class="line line2"></div> <!--Final State-->
+        <div class="arrow-right arrow-right2"></div> <!--Final State-->
+        <div class="line line3"></div> <!--Final State-->
+        <div class="arrow-right arrow-right3"></div> <!--Final State-->
+        <div class="line line4"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal4"></div> <!--Final State-->
+        <div class="line line5"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal5"></div> <!--Final State-->
+        <div class="line line6"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal6"></div> <!--Final State-->
+        <div class="line line7"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal7"></div> <!--Final State-->
+        <div class="line line8"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal8"></div> <!--Final State-->
+        <div class="line line9"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal9"></div> <!--Final State-->
+        <div class="line line10"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal10"></div> <!--Final State-->
+        <div class="line line11"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal11"></div> <!--Final State-->
+        <div class="line line12"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal12"></div> <!--Final State-->
+        <div class="line line13"></div> <!--Final State-->
+        <div class="arrow-right arrow-diagonal13"></div> <!--Final State-->
+        <div class="line line14"></div> <!--Final State-->
+        <div class="arrow-right arrow-right14"></div> <!--Final State-->
+        <div class="clockwise">&#8634;</div> <!--Final State-->
+        <div class="counterclockwise">&#8635;</div> <!--Final State-->
+        <div class="clockwise15">&#8634;</div> <!--Final State-->
+        <div class="clockwise16">&#8634;</div> <!--Final State-->
+        <div class="letter letter1">a</div> <!--Number13-->
+        <div class="letter letter2">b</div> <!--Number13-->
+        <div class="letter letter3">b</div> <!--Number13-->
+        <div class="letter letter4">a</div> <!--Number13-->
+        <div class="letter letter5">b</div> <!--Number13-->
+        <div class="letter letter6">a,b</div> <!--Number13-->
+        <div class="letter letter7">b</div> <!--Number13-->
+        <div class="letter letter8">a</div> <!--Number13-->
+        <div class="letter letter9">a</div> <!--Number13-->
+        <div class="letter letter10">a</div> <!--Number13-->
+        <div class="letter letter11">a</div> <!--Number13-->
+        <div class="letter letter12">b</div> <!--Number13-->
+        <div class="letter letter13">b</div> <!--Number13-->
+        <div class="letter letter14">a</div> <!--Number13-->
+        <div class="letter letter15">b</div> <!--Number13-->
+        <div class="letter letter16">a</div> <!--Number13-->
+        <div class="letter letter17">b</div> <!--Number13-->
+        <div class="letter letter18">a,b</div> <!--Number13-->
+        <div class="letter letter19">a,b</div> <!--Number13-->
+    </div>
+
+    <div id="states" class="container3" hidden="hidden">
+      <div id="number q0" class="circle initial-state">-</div> <!--Start State-->
+      <div class="line"></div> <!--Start State-->
+      <div class="number">0,1</div> <!--Start State-->
+      <div class="arrow-right"></div> <!--Start State-->
+      <div id="number q1" class="circle state1"></div> <!--non Final State-->
+      <div id="number q2" class="circle state2"></div> <!--non Final State-->
+      <div class="line line1"></div> <!--Start State-->
+      <div class="number number1">0</div> <!--Start State-->
+      <div class="arrow-right arrow-diagonal1"></div> <!--Start State-->
+      <div class="line line4"></div> <!--Start State-->
+      <div class="number number4">0</div> <!--Start State-->
+      <div class="arrow-right arrow-right4"></div> <!--Start State-->
+      <div id="number q3" class="circle state3"></div> <!--non Final State-->
+      <div class="line line2"></div> <!--Start State-->
+      <div class="number number2">1</div> <!--Start State-->
+      <div class="arrow-right arrow-diagonal2"></div> <!--Start State-->
+      <div class="line line3"></div> <!--Start State-->
+      <div class="number number3">1</div> <!--Start State-->
+      <div class="arrow-right arrow-down3"></div> <!--Start State-->
+      <div class="line line5"></div> <!--Start State-->
+      <div class="number number5">1</div> <!--Start State-->
+      <div class="arrow-right arrow-right5"></div> <!--Start State-->
+      <div class="line line6"></div> <!--Start State-->
+      <div class="number number6">0</div> <!--Start State-->
+      <div class="arrow-right arrow-diagonal6"></div> <!--Start State-->
+      <div id="number q4" class="circle state4"></div> <!--non Final State-->
+      <div class="line line8"></div> <!--Start State-->
+      <div class="number number8">0</div> <!--Start State-->
+      <div class="arrow-right arrow-up8"></div> <!--Start State-->
+      <div class="line line7"></div> <!--Start State-->
+      <div class="number number7">1</div> <!--Start State-->
+      <div class="arrow-right arrow-diagonal7"></div> <!--Start State-->
+      <div class="line line10"></div> <!--Start State-->
+      <div class="number number10">0</div> <!--Start State-->
+      <div class="arrow-right arrow-diagonal10"></div> <!--Start State-->
+      <div id="number q5" class="circle state5"></div> <!--non Final State-->
+      <div class="line line9"></div> <!--Start State-->
+      <div class="number number9">0</div> <!--Start State-->
+      <div class="arrow-right arrow-up9"></div> <!--Start State-->
+      <div class="line line11"></div> <!--Start State-->
+      <div class="number number11">1</div> <!--Start State-->
+      <div class="arrow-right arrow-right11"></div> <!--Start State-->
+      <div id="number q6" class="circle state6"></div> <!--non Final State-->
+      <div class="line line12"></div> <!--Start State-->
+      <div class="number number12">1</div> <!--Start State-->
+      <div class="arrow-right arrow-diagonal12"></div> <!--Start State-->
+      <div id="number q7" class="circle final-state">+</div> <!--Final State-->
+      <div class="clockwise">&#8634;</div> <!--Final State-->
+      <div class="number number13">0,1</div> <!--Number13-->
+</div>
+
+    <div class="container4">
+      <div class="block">
+        <h3>Display:</h3>
+        
+        <div class="popup" onclick="CFGFunction()"> <button class="btn" id="button-simulate">CFG</button>
+          <span class="popuptext" id="myPopup">
+            <h4>Context Free Grammar</h4>
+            <h4 id="cfg"></h4>
+          </span>
+        </div>
+        
+        <div class="PDA popup" onclick="PDAFunction()"> <button class="btn" id="button-simulate">PDA</button>
+          <span class="PDA popuptext" id="PDAmyPopup">
+            <h4 class="h4">Push Down Automata</h4>
+            <img id='pda_let' src="" />
+            <img id='pda_num' src="" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="container5">
+      <div class="grid1">
+        <h2>What is RegEx?</h2>
+        <p>Regular expressions (RegEx) are compact and powerful notation used to describe sets of patterns and strings in automaton theory. They provide a way to define regular languages, a class of languages ​​that can be recognized by a finite automaton.</p>
+        <hr>
+      </div>
+      <div class="grid2">
+        <h2>What is DFA?</h2>
+        <p>A deterministic finite automaton (DFA) is a mathematical model used in automaton theory and formal languages ​​to recognize or generate strings in a language. It is a kind of finite state machine that operates deterministically. There is only one transition to the next state for a given input symbol.</p>
+        <hr>
+      </div>
+      <div class="grid3">
+        <h2>What is CFG?</h2>
+        <p>Context-free grammar (CFG) is formal grammar used to describe the syntax or structure of a language in automaton theory and formal language theory. It provides a set of production rules that define how symbols are combined to form valid strings within the language.
+        </p>
+      </div>
+      <div class="grid4">
+        <h2>What is PDA?</h2>
+        <p>A pushdown automaton (PDA) is a type of abstract computational model in automata theory. It extends the capabilities of a finite automaton by incorporating a stack, which allows for more complex and powerful computations. PDAs are commonly used to recognize context-free languages.</p>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/letter1.js"></script>
+    <script>
+      function CFGFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+
+        if(document.getElementById('regex').value == "letter1"){
+          document.getElementById("cfg").innerHTML = 'S -> abaX | babX <br>' +
+                                                     'X -> aX | bX | babY <br> ' +
+                                                     'Y -> aZ | bZ <br>' +
+                                                     'Z -> aZ | bZ | ^ <br>';
+        }
+        else if(document.getElementById('regex').value == "number1"){
+          document.getElementById("cfg").innerHTML = 'S -> 0X | 1X <br>' +
+                                                     'X -> 0X | 1X | Y <br> ' +
+                                                     'Y -> 111Z | 000Z | 101Z <br>' +
+                                                     'Z -> 0Z | 1Z | ^  <br>';
+        }
+        
+      }
+
+      function PDAFunction() {
+        var popup = document.getElementById("PDAmyPopup");
+        popup.classList.toggle("show");
+
+        if(document.getElementById('regex').value == "letter1"){
+          document.getElementById("pda_let").src = "images/pdaLet.png"
+          document.getElementById("pda_num").src = ""
+          
+        }
+        else if(document.getElementById('regex').value == "number1"){
+          document.getElementById("pda_num").src = "images/pdaNum.png"
+          document.getElementById("pda_let").src = ""
+        }
+        
+      }
+      </script>
+</body>
+</html>
